@@ -1,5 +1,6 @@
 package cn.zmlio.tools.exceltemplate;
 
+import cn.zmlio.tools.exceltemplate.model.TitleSpec;
 import org.apache.poi.ss.usermodel.CellType;
 
 public abstract class SourceSpec {
