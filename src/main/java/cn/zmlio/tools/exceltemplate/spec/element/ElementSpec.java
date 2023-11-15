@@ -18,9 +18,5 @@ public class ElementSpec {
     private Integer col;
     @XmlAttribute
     private String valueType;
-    @XmlAttribute
-    private Integer startRow;
-    @XmlAttribute
-    private String endingCondition;
 
 }

@@ -12,4 +12,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BasicObjectSpec extends ObjectSpec {
     private ElementSpec spec;
+
+
 }

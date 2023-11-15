@@ -9,8 +9,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement(name = "template")
-@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlAccessorType(XmlAccessType.FIELD)
 @Data
 public class Template implements Serializable {
+
     ObjectSpec object;
+
 }

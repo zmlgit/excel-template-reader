@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="template" nillable="true" type="xs:anyType"/>
+
+  <xs:complexType name="template">
+    <xs:sequence>
+      <xs:element name="object" type="objectSpec" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="objectSpec" abstract="true">
+    <xs:sequence/>
+    <xs:attribute name="attribute" type="xs:string"/>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="basicObjectSpec">
+    <xs:complexContent>
+      <xs:extension base="objectSpec">
+        <xs:sequence>
+          <xs:element name="spec" type="elementSpec" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="elementSpec">
+    <xs:sequence/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="row" type="xs:int"/>
+    <xs:attribute name="col" type="xs:int"/>
+    <xs:attribute name="valueType" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="listObjectSpec">
+    <xs:complexContent>
+      <xs:extension base="objectSpec">
+        <xs:sequence>
+          <xs:element name="object" type="objectSpec" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="startRow" type="xs:int"/>
+        <xs:attribute name="endingCondition" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="complexObjectSpec">
+    <xs:complexContent>
+      <xs:extension base="objectSpec">
+        <xs:sequence>
+          <xs:element name="field" type="objectSpec" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="javaType" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+

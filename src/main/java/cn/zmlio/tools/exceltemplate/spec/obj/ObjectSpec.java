@@ -2,10 +2,8 @@ package cn.zmlio.tools.exceltemplate.spec.obj;
 
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Abstract class for all object spec.
@@ -13,6 +11,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({BasicObjectSpec.class, ListObjectSpec.class, ComplexObjectSpec.class})
+@XmlRootElement(name = "template")
 public abstract class ObjectSpec {
     /**
      * The name of the object.
@@ -21,4 +20,6 @@ public abstract class ObjectSpec {
     protected String attribute;
     @XmlAttribute
     protected String id;
+    @XmlAttribute
+    private String type;
 }

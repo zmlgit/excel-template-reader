@@ -1,7 +1,9 @@
 package cn.zmlio.tools.exceltemplate;
 
-import java.util.List;
+import lombok.Data;
 
+import java.util.List;
+@Data
 public class ZhiRenGuangDa {
     private String 查询日期;
 
