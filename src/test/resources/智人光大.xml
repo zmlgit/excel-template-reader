@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <object type="cn.zmlio.tools.exceltemplate.ZhiRenGuangDa">
+        <object name="查询日期" value="" type="String">
+            <spec>
+                <title content="查询日期:" col="1" row="3"/>
+                <value col="1" row="3" type="string"/>
+            </spec>
+        </object>
+        <list start="17">
+            <object type="cn.zmlio.tools.exceltemplate.ZhiRenGuangDa.流水">
+                <object name="交易日期" value="" type="String">
+                    <spec>
+                        <title content="交易日期" col="1" row="1"/>
+                        <value col="0"  type="string"/>
+                    </spec>
+                </object>
+                <object name="交易时间" value="" type="String">
+                    <spec>
+                        <title content="交易时间" col="2" row="1"/>
+                        <value col="1"  type="string"/>
+                    </spec>
+                </object>
+                <object name="借方发生额" value="" type="String">
+                    <spec>
+                        <title content="借方发生额" col="3" row="1"/>
+                        <value col="2"  type="string"/>
+                    </spec>
+                </object>
+                <object name="贷方发生额" value="" type="String">
+                    <spec>
+                        <title content="贷方发生额" col="4" row="1"/>
+                        <value col="3"  type="string"/>
+                    </spec>
+                </object>
+                <object name="账户余额" value="" type="String">
+                    <spec>
+                        <title content="账户余额" col="5" row="1"/>
+                        <value col="4"  type="string"/>
+                    </spec>
+                </object>
+                <object name="对方名称" value="" type="String">
+                    <spec>
+                        <title content="对方名称" col="6" row="1"/>
+                        <value col="5"  type="string"/>
+                    </spec>
+                </object>
+                <object name="摘要" value="" type="String">
+                    <spec>
+                        <title content="摘要" col="6" row="1"/>
+                        <value col="6"  type="string"/>
+                    </spec>
+                </object>
+                <object name="对方银行" value="" type="String">
+                    <spec>
+                        <title content="对方银行" col="6" row="1"/>
+                        <value col="7"  type="string"/>
+                    </spec>
+                </object>
+                <object name="凭证号" value="" type="String">
+                    <spec>
+                        <title content="凭证号" col="6" row="1"/>
+                        <value col="8"  type="string"/>
+                    </spec>
+                </object>
+                <object name="流水号" value="" type="String">
+                    <spec>
+                        <title content="流水号" col="6" row="1"/>
+                        <value col="9"  type="string"/>
+                    </spec>
+                </object>
+            </object>
+        </list>
+    </object>
+</template>

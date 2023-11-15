@@ -6,7 +6,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 
 public interface SheetValueReader<S extends SourceSpec, R> {
     static Object getObject(Cell cell, CellType valueType) {
-        Object value=null;
+        Object value = null;
         switch (valueType) {
             case _NONE:
                 break;

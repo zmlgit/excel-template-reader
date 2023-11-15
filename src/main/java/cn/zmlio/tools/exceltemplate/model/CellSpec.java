@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 public class CellSpec extends ElementSpec {
     private Integer row;
     private Integer column;
-    private String value;
+    private Object value;
     private String formula;
     private String format;
     private String type;
