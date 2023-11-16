@@ -17,5 +17,9 @@ public class ListObjectSpec extends ObjectSpec {
     @XmlAttribute
     private Integer startRow;
     @XmlAttribute
-    private String endingCondition;
+    private EndingCondition endingCondition;
+
+    public enum EndingCondition {
+        EMPTY_ROW, ENDING_SHEET
+    }
 }

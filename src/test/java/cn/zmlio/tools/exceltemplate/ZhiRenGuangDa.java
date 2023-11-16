@@ -19,7 +19,7 @@ public class ZhiRenGuangDa {
 
     private String 借方笔数;
 
-    private String 借方发生额;
+    private Double 借方发生额;
 
     private String 贷方笔数;
 
@@ -28,7 +28,7 @@ public class ZhiRenGuangDa {
     private List<流水> 流水;
 
 
-    static class 流水 {
+    public static class 流水 extends cn.zmlio.tools.exceltemplate.流水 {
         private String 交易日期;
 
         private String 交易时间;

@@ -103,40 +103,42 @@ class TemplateTest {
 
     @org.junit.jupiter.api.Test
     void readComplexTemplate() throws JAXBException {
-        String xml = "<?xml version=\"1.0\" encoding=\"utf8\" standalone=\"yes\"?>\n" +
-                "<template>\n" +
-                "    <complex javaType=\"cn.zmlio.tools.exceltemplate.ZhiRenGuangDa\">\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test0\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"0\"/>\n" +
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
+                "<template xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
+                "    <object xsi:type=\"complexObjectSpec\" attribute=\"test\" javaType=\"cn.zmlio.tools.exceltemplate.ZhiRenGuangDa\">\n" +
+                "        <field xsi:type=\"basicObjectSpec\" attribute=\"查询日期\">\n" +
+                "            <spec xsi:type=\"elementSpec\" name=\"查询日期\" row=\"2\" col=\"1\" valueType=\"string\"/>\n" +
                 "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test1\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"1\"/>\n" +
+                "        <field xsi:type=\"basicObjectSpec\" attribute=\"查询开始日期\">\n" +
+                "            <spec xsi:type=\"elementSpec\" name=\"查询开始日期\" row=\"3\" col=\"1\" valueType=\"string\"/>\n" +
                 "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test2\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"2\"/>\n" +
+                "        <field xsi:type=\"basicObjectSpec\" attribute=\"查询结束日期\">\n" +
+                "            <spec xsi:type=\"elementSpec\" name=\"查询结束日期\" row=\"3\" col=\"1\" valueType=\"string\"/>\n" +
                 "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test3\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"3\"/>\n" +
+                "\n" +
+                "        <field xsi:type=\"listObjectSpec\" startRow=\"16\" endingCondition=\"查询结束日期\">\n" +
+                "            <object xsi:type=\"complexObjectSpec\" javaType=\"cn.zmlio.tools.exceltemplate.ZhiRenGuangDa.流水\">\n" +
+                "                <field xsi:type=\"basicObjectSpec\" attribute=\"交易日期\">\n" +
+                "                    <spec xsi:type=\"elementSpec\" name=\"交易日期\" col=\"0\" valueType=\"string\"/>\n" +
+                "                </field>\n" +
+                "                <field xsi:type=\"basicObjectSpec\" attribute=\"交易时间\">\n" +
+                "                    <spec xsi:type=\"elementSpec\" name=\"交易时间\" col=\"1\" valueType=\"string\"/>\n" +
+                "                </field>\n" +
+                "                <field xsi:type=\"basicObjectSpec\" attribute=\"借方发生额\">\n" +
+                "                    <spec xsi:type=\"elementSpec\" name=\"借方发生额\" col=\"2\" valueType=\"string\"/>\n" +
+                "                </field>\n" +
+                "                <field xsi:type=\"basicObjectSpec\" attribute=\"账户余额\">\n" +
+                "                    <spec xsi:type=\"elementSpec\" name=\"账户余额\" col=\"3\" valueType=\"string\"/>\n" +
+                "                </field>\n" +
+                "                <field xsi:type=\"basicObjectSpec\" attribute=\"对方名称\">\n" +
+                "                    <spec xsi:type=\"elementSpec\" name=\"对方名称\" col=\"4\" valueType=\"string\"/>\n" +
+                "                </field>\n" +
+                "                <field xsi:type=\"basicObjectSpec\" attribute=\"对方账号\">\n" +
+                "                    <spec xsi:type=\"elementSpec\" name=\"对方账号\" col=\"5\" valueType=\"string\"/>\n" +
+                "                </field>\n" +
+                "            </object>\n" +
                 "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test4\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"4\"/>\n" +
-                "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test5\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"5\"/>\n" +
-                "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test6\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"6\"/>\n" +
-                "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test7\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"7\"/>\n" +
-                "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test8\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"8\"/>\n" +
-                "        </field>\n" +
-                "        <field xsi:type=\"basicObjectSpec\" attribute=\"test9\" type=\"basic\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                "            <spec row=\"1\" col=\"9\"/>\n" +
-                "        </field>\n" +
-                "    </complex>\n" +
+                "    </object>\n" +
                 "</template>";
 
         Source source = new StreamSource(new StringReader(xml));
@@ -151,7 +153,7 @@ class TemplateTest {
         ListObjectSpec listObjectSpec = new ListObjectSpec();
         listObjectSpec.setAttribute("test");
         listObjectSpec.setStartRow(1);
-        listObjectSpec.setEndingCondition("test");
+        listObjectSpec.setEndingCondition(ListObjectSpec.EndingCondition.EMPTY_ROW);
         ComplexObjectSpec complexObjectSpec = getComplexObjectSpec();
         listObjectSpec.setObject(complexObjectSpec);
         template.setObject(listObjectSpec);

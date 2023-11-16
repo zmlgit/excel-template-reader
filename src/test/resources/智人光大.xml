@@ -11,8 +11,8 @@
             <spec xsi:type="elementSpec" name="查询结束日期" row="3" col="1" valueType="string"/>
         </field>
 
-        <field xsi:type="listObjectSpec" startRow="16" endingCondition="查询结束日期">
-            <object xsi:type="complexObjectSpec" javaType="cn.zmlio.tools.exceltemplate.ZhiRenGuangDa.流水">
+        <field xsi:type="listObjectSpec" startRow="16" attribute="流水">
+            <object xsi:type="complexObjectSpec" javaType="cn.zmlio.tools.exceltemplate.流水" attribute="流水">
                 <field xsi:type="basicObjectSpec" attribute="交易日期">
                     <spec xsi:type="elementSpec" name="交易日期" col="0" valueType="string"/>
                 </field>
@@ -22,14 +22,23 @@
                 <field xsi:type="basicObjectSpec" attribute="借方发生额">
                     <spec xsi:type="elementSpec" name="借方发生额" col="2" valueType="string"/>
                 </field>
+                <field xsi:type="basicObjectSpec" attribute="贷方发生额">
+                    <spec xsi:type="elementSpec" name="贷方发生额" col="3" valueType="string"/>
+                </field>
                 <field xsi:type="basicObjectSpec" attribute="账户余额">
-                    <spec xsi:type="elementSpec" name="账户余额" col="3" valueType="string"/>
+                    <spec xsi:type="elementSpec" name="账户余额" col="4" valueType="string"/>
                 </field>
                 <field xsi:type="basicObjectSpec" attribute="对方名称">
-                    <spec xsi:type="elementSpec" name="对方名称" col="4" valueType="string"/>
+                    <spec xsi:type="elementSpec" name="对方名称" col="5" valueType="string"/>
                 </field>
                 <field xsi:type="basicObjectSpec" attribute="对方账号">
-                    <spec xsi:type="elementSpec" name="对方账号" col="5" valueType="string"/>
+                    <spec xsi:type="elementSpec" name="对方账号" col="6" valueType="string"/>
+                </field>
+                <field xsi:type="basicObjectSpec" attribute="摘要">
+                    <spec xsi:type="elementSpec" name="摘要" col="7" valueType="string"/>
+                </field>
+                <field xsi:type="basicObjectSpec" attribute="对方银行">
+                    <spec xsi:type="elementSpec" name="对方银行" col="8" valueType="string"/>
                 </field>
             </object>
         </field>
