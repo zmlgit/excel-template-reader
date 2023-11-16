@@ -12,9 +12,9 @@ public class 流水 {
 
     private Double 借方发生额;
 
-    private String 贷方发生额;
+    private Double 贷方发生额;
 
-    private Double 账户余额;
+    private String 账户余额;
 
     private String 对方名称;
 
