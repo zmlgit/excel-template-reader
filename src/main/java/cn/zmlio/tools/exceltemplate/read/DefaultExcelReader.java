@@ -1,5 +1,6 @@
 package cn.zmlio.tools.exceltemplate.read;
 
+import cn.zmlio.tools.exceltemplate.HandleContext;
 import cn.zmlio.tools.exceltemplate.spec.Template;
 import cn.zmlio.tools.exceltemplate.spec.element.ElementSpec;
 import cn.zmlio.tools.exceltemplate.spec.obj.BasicObjectSpec;
@@ -20,7 +21,7 @@ public class DefaultExcelReader implements ExcelReader {
     @Override
     public Object fromExcel(Sheet sheet, Template template) {
         ObjectSpec rootObject = template.getObject();
-        ReadingContext context = new ReadingContext();
+        HandleContext context = new HandleContext();
         Object object = null;
         if (rootObject instanceof BasicObjectSpec) {
             object = readBasicObject(sheet, context, (BasicObjectSpec) rootObject);
@@ -32,7 +33,7 @@ public class DefaultExcelReader implements ExcelReader {
         return object;
     }
 
-    private Object readBasicObject(Sheet sheet, ReadingContext context, BasicObjectSpec basicObjectSpec) {
+    private Object readBasicObject(Sheet sheet, HandleContext context, BasicObjectSpec basicObjectSpec) {
         ElementSpec spec = basicObjectSpec.getSpec();
         log.debug("readObject:{},context:{}", spec, context);
         Integer col = spec.getCol();
@@ -42,13 +43,13 @@ public class DefaultExcelReader implements ExcelReader {
             throw new IllegalArgumentException("col is null");
         }
         if (row == null) {
-            return  readCellValue(sheet.getRow(context.currentRow).getCell(col));
+            return readCellValue(sheet.getRow(context.getCurrentRow()).getCell(col));
         } else {
-            return  readCellValue(sheet.getRow(row).getCell(col));
+            return readCellValue(sheet.getRow(row).getCell(col));
         }
     }
 
-    private Object readComplexObject(Sheet sheet, ReadingContext context, ComplexObjectSpec spec) {
+    private Object readComplexObject(Sheet sheet, HandleContext context, ComplexObjectSpec spec) {
         log.debug("readObject:{},context:{}", spec, context);
         Class<?> javaType = spec.getJavaType();
 
@@ -79,16 +80,15 @@ public class DefaultExcelReader implements ExcelReader {
         }
     }
 
-    private Object readListObject(Sheet sheet, ReadingContext context, ListObjectSpec objectSpec) {
+    private Object readListObject(Sheet sheet, HandleContext context, ListObjectSpec objectSpec) {
         log.debug("readObject:{},context:{}", objectSpec, context);
         List<Object> list = new LinkedList<>();
         int startRow = objectSpec.getStartRow();
-        context.currentRow = startRow;
-        context.startRow = startRow;
-
+        context.setCurrentRow(startRow);
+        context.setStartRow(startRow);
         for (int row1 = startRow; row1 < sheet.getLastRowNum(); row1++) {
-            context.currentRow = row1;
-            Row row = sheet.getRow(context.currentRow);
+            context.setCurrentRow(row1);
+            Row row = sheet.getRow(context.getCurrentRow());
             if (row == null) {
                 break;
             }
@@ -107,7 +107,7 @@ public class DefaultExcelReader implements ExcelReader {
                 list.add(readListObject(sheet, context, listObjectSpec));
             }
         }
-        context.startRow = null;
+        context.setCurrentRow(null);
         return list;
     }
 
@@ -139,20 +139,4 @@ public class DefaultExcelReader implements ExcelReader {
         return true;
     }
 
-    static class ReadingContext {
-        private Sheet sheet;
-        private ObjectSpec parentObjectSpec;
-        private Integer startRow;
-        private int startColumn;
-
-        private int currentColumn;
-        private int endRow;
-        private int endColumn;
-        private Integer currentRow;
-
-        @Override
-        public String toString() {
-            return "ReadingContext{" + "startRow=" + startRow + ", startColumn=" + startColumn + ", currentColumn=" + currentColumn + ", endRow=" + endRow + ", endColumn=" + endColumn + ", currentRow=" + currentRow + '}';
-        }
-    }
 }
